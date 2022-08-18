@@ -1,6 +1,6 @@
 # Developing a cycling control program for my indoor trainer (TrainerRoad clone) Part 1 - Establish a BLE connection
 First of all, thanks for checking out my Github page! 
-This project is a personal development project that I am undertaking to practice my python coding skills and to explore new libraries and functionalities. 
+This is a personal development project that I am undertaking to practice my python coding skills and to explore new libraries and functionalities. 
 My intention is to use mainly python and PostgreSQL.
 
 The overall goal is to make a basic version of TrainerRoad, which is a popular cycling training platform. 
@@ -40,7 +40,7 @@ Next, using the name of the device connect using bluetooth low energy.
 ```
 suito_device = ble("SUITO") % connect to the device names "SUITO"
 ```
-A ble object was created in the MATLAB workspace and is summarized in the Command Window
+A ble object was created in the MATLAB workspace and is summarized in the Command Window output
 ```
 suito_device = 
   ble with properties:
@@ -116,7 +116,7 @@ ans =
     "Custom"                       "8E400001-F315-4F60-9FB8-838830DAEA50"    "Custom"                  
   
 ```
-As you can see, the services and chracteristics are nicely listed along with the UUIDs and attributes. 
+As you can see, the services and characteristics are nicely listed along with the UUIDs and attributes. 
 
 ### Wrap up
 
