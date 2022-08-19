@@ -30,7 +30,7 @@ def bike_data_callback(sender: int, data: bytearray):
 Sending the command to change the resistance (target power) first requires permission to change the device settings.
 I observed this in the packet traffic, and learned the details from the Fitness Machine Service Bluetooth Service Supplement (https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/).
 According to the documentation, to change the trainer resistance I first needed to send the '00' operation code to request permission.
-![fit machine control point docs initiate](https://user-images.githubusercontent.com/102377660/185512466-a56b7392-a31e-4bc0-97b2-b845f12dd129.PNG)
+![fit machine control point docs initiate](https://user-images.githubusercontent.com/102377660/185708952-c623ba81-4980-403c-bba1-540eb63640bb.PNG)
 (the M requirement indicates that a notification subscription must be set up prior to commands being sent).
 Then, to change the trainer resistance the code is '05' followed by the new target power. 
 ![fit machine send command doc](https://user-images.githubusercontent.com/102377660/185513023-60261403-56ff-415a-bda4-0a3db659564a.PNG)
