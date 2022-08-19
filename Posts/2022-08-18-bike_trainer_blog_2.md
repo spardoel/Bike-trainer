@@ -3,7 +3,7 @@ At this stage I knew what services and characteristics the device had but I didn
 I used Wireshark and the Bluetooth Virtual Sniffer from Microsoft to monitor the BLE traffic on my computer. (https://techcommunity.microsoft.com/t5/microsoft-bluetooth-blog/introducing-bluetooth-virtual-sniffer-btvs-exe/ba-p/2113478)
 
 ### Lauch TrainerRoad to do a bike workout
-So I started the sniffer and launched a workout on TrainerRoad. The TrainerRoad interface looks like this
+I started the sniffer and launched a workout on TrainerRoad. The TrainerRoad interface looks like this
 ![Trainer road image](https://user-images.githubusercontent.com/102377660/185466247-819c4fad-b2e1-46f3-b5eb-d9b476920a45.PNG)
 
 Basically, the program has a set workout template that will increase and decrease the resistance at specific times. The blue outline at the bottom is the target power plotted over time. 
@@ -11,7 +11,7 @@ The rider just has to keep pedaling and the resistance will be changed to match 
 At this point, the two most important values were the Target Power (aka the trainer resistance) and the User Power (aka how hard the cyclist is turning the pedals).
 In the above image, the target power is 95 Watts and the user power is 0 Watts (because I was sitting at my computer not on the bike...).
 
-### INspect the packet traffic
+### Inspect the packet traffic
 After letting the workout run for a few minutes I noticed some patterns in the BLE packet traffic. 
 First, I noticed that the SUITO trainer (address 'F3:DB:2B:F4:47:0C') was notifying the computer once every second using the Fitness Machine Service and the Indoor Bike Data characteristic. 
 ![Sniffer bike data example](https://user-images.githubusercontent.com/102377660/185469411-faf199e6-8543-4918-8289-9af0051ffdad.PNG)
