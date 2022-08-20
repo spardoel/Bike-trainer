@@ -104,7 +104,7 @@ The documentation also lists the size of each data field. I added up the data fi
 The number of bytes matched. I illustrated the decoded data here.
 ![decoded packet](https://user-images.githubusercontent.com/102377660/185517818-94a233e9-38be-4773-a2e0-e9111cd01f22.png)
 
-Now it was a matter of converting the correct sections of the byte array to useful values. I wanted to get the instantaneous cadence and instantaneous power. The code below shows how I used the Struct library to unpack the byte array. Note that accodring to the Bluetooth documentation the cadence units are in 1/2 revolutions per minute (no, I don't know why either). So the value needed to be halved to get revolutions per minute. 
+Now it was a matter of converting the correct sections of the byte array to useful values. I wanted to get the instantaneous cadence and instantaneous power. The code below shows how I used the Struct library to unpack the byte array. Note that according to the Bluetooth documentation the cadence units are in 1/2 revolutions per minute (no, I don't know why either). So the value needed to be halved to get revolutions per minute. 
 ```
 def bike_data_callback(sender: int, data: bytearray):
     print(f"Bike data {sender}: {data}")
