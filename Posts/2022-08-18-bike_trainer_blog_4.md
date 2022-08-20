@@ -152,4 +152,3 @@ The first line is the response from the Fitness Machine Control Point notificati
 
 ### Wrap up
 This post showed how I was able to send commands to the bike trainer to update the resistance (target power) and receive confirmation notifications. The post also showed how I decoded the Indoor Bike Data packet and extracted the instantaneous cadence and instantaneous power. 
-At this point in the project I had tested all the individual commands and communication functions that I needed. Next, it was time to break out the class diagrams and start to design a useable program. 
