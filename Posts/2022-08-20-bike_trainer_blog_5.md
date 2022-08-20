@@ -1,4 +1,4 @@
-# Developing a cycling control program for my indoor trainer (TrainerRoad clone) Part 4 - Integrating PostgreSQL
+# Developing a cycling control program for my indoor trainer (TrainerRoad clone) Part 5 - Integrating PostgreSQL
 From the very beginning of the project I knew I wanted to use a SQL database to manage the workout data. The main reason for this was scalability. I could easily keep track of a few workout templates and trainning logs but in a real setting with many users, a large catalogue of workouts and years of training data local file storage was not a good solutions. 
 So I started to think about the database I wanted and how to organize the tables. 
 
