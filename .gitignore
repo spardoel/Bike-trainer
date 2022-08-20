@@ -1,0 +1,5 @@
+Code files/.venv/
+Code files/__pycache__
+Code files/.vscode
+Code files/SQL_config/__pycache__
+Code files/Preliminary connection tests/SQL_config/__pycache__

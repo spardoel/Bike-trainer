@@ -1,0 +1,254 @@
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received F1:C1:BD:98:40:6D: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:3 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x000002A6290C8C50>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received FD:D0:2C:CD:3E:E1: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:3 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x00000214BAEC8C50>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Venus_2C4CC63CF269.
+DEBUG:bleak.backends.winrt.scanner:Received 79:63:2B:F1:0B:2A: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Venus_2C4CC63CF269.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:3 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x0000021313A2A170>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.scanner:1 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x000002B7627DC470>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received B4:D2:85:C2:CD:FE: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:2 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x000001EE91B54710>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 60:64:E4:36:2E:1B: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:4 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x000001A64CC08C50>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:2 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x000002456E5E8710>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received C3:F1:4E:DA:CD:12: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 0F:7F:B5:92:0D:1C: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received C3:F1:4E:DA:CD:12: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 0F:7F:B5:92:0D:1C: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:DC:DC:B0:BA:9A: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:DC:DC:B0:BA:9A: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 3C:68:16:4E:B8:86: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Venus_2C4CC63CF269.
+DEBUG:bleak.backends.winrt.scanner:Received B4:D2:85:C2:CD:FE: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 4C:A2:95:5F:60:59: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 54:BD:79:1E:F3:23: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Venus_2C4CC63CF269.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:10 devices found. Watcher status: 3.
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:1 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x0000021E66457ED0>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.scanner:1 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x00000170B8688470>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Database connection established
+INFO:root:Database connection closed
+INFO:root:Database connection established
+INFO:root:Database connection closed
+INFO:root:Database connection established
+INFO:root:Database connection closed
+INFO:root:Database connection established
+INFO:root:Database connection established
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received B4:D2:85:C2:CD:FE: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received B4:D2:85:C2:CD:FE: S9f1b4589198ad67cC.
+DEBUG:bleak.backends.winrt.scanner:Received 46:9D:8E:B0:6B:0D: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 46:9D:8E:B0:6B:0D: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:3 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x0000021E60E25D10>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Database connection established
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Venus_2C4CC63CF269.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:2 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x000001EEB4505530>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Database connection closed
+INFO:root:Database connection established
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 1E:BE:36:5F:B7:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:4 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x00000221CC679790>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Database connection established
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 1E:BE:36:5F:B7:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received CF:27:CC:72:0F:F2: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 5C:C1:D7:E9:EC:B7: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:4 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x0000018E2A5D1970>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Starting workout
+INFO:root:Database connection closed
+INFO:root:Database connection established
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: Unknown.
+DEBUG:bleak.backends.winrt.scanner:1 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x00000232A2710E70>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Workout Fast and steady was loaded.
+INFO:root:Starting workout
+INFO:root:Database connection closed
+INFO:root:Database connection established
+INFO:root:Trainer interface created
+DEBUG:asyncio:Using proactor: IocpProactor
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Venus_2C4CC63CF269.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received 2C:4C:C6:3C:F2:69: Unknown.
+DEBUG:bleak.backends.winrt.scanner:Received F3:DB:2B:F4:47:0C: SUITO.
+DEBUG:bleak.backends.winrt.scanner:2 devices found. Watcher status: 3.
+DEBUG:bleak.backends.winrt.client:Connecting to BLE device @ F3:DB:2B:F4:47:0C
+DEBUG:bleak.backends.winrt.client:session_status_changed_event_handler: id: <_bleak_winrt_Windows_Devices_Bluetooth.BluetoothDeviceId object at 0x0000020E36A75A90>, error: 0, status: 1
+DEBUG:bleak.backends.winrt.client:Get Services...
+INFO:bleak.backends.winrt.client:Services resolved for BleakClientWinRT (F3:DB:2B:F4:47:0C)
+DEBUG:bleak.backends.winrt.client:Read Characteristic 004B : bytearray(b'Elite')
+INFO:root:Workout Fast and steady was loaded.
+INFO:root:Starting workout
+INFO:root:Database connection closed
