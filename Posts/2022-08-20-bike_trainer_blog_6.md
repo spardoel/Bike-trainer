@@ -36,8 +36,12 @@ selected_workout = "Fast and steady"
 ride = WorkoutPlayer(trainer, current_user.rider_ftp, selected_workout, database)
 ride.start_workout()
 ```
-After the imports, I set up a log file. Then declared the current user id as a constant and initialized the database handler. I then created the instance of the User class. The User class takes the rider ftp as an input paramater so that value was retrived from the database using the database handler's get_athlete_power() method.
-Next, I instantiated the TrainerInterface class which started the connection to the trainer. Once the trainer was connected and a workout was selected (in this case declared as a contant), a WorkoutPlayer instance was created.
-The workout player takes the TrainerInterface, rider ftp, selected workout and the DatabaseHandler as inputs. 
+After the imports, I set up a log file. Then declared the current user id as a constant and initialized the database handler. I then created the instance of the User class. The User class takes the rider ftp as an input paramater, so that value was retrived from the database using the database handler's get_athlete_power() method.
+Next, I instantiated the TrainerInterface class which started the connection to the trainer. Once the trainer was connected and a workout was selected (in this case declared as a constant), a WorkoutPlayer instance was created.
+
+### The WorkoutPlayer class
+The idea behind this class was that it would be able to interface with both the trainer and the SQL database. Then, once per second it would receive the rider stats from the trainer, update the database, and update the trainer resistance (if applicable). 
+As a starting point, the workout player takes the TrainerInterface, rider ftp, selected workout and the DatabaseHandler as inputs. 
 In the WorkoutPlayer's __init__ method, the database interface is used to retrieve the power profile of the desired workout. 
+
 
