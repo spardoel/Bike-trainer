@@ -88,3 +88,89 @@ Similar to how the athlete's FTP value was retreived using the athlete_id, this 
         return cur.fetchone()[0]
 ```
 As you can see, the method uses the same commands as the get_athlete_power() method, changing only the SQL query. In this case the query selects the template_id column from the workout_templates table and returns the row where the workout_name matches the name provided to the method. 
+
+Next let's look at something a little more interesting.
+
+### get_power_profile()
+This method will return the power profile as a list. I wanted to make the method flexible enough to accept either the workout name or workout id as input parameters. A lot of the code in the method has to do with handling these two possible inputs. 
+```
+def get_power_profile(self, workout_name="", workout_id=[]):
+        # if no values are entered, return an empty list
+        if len(workout_name) == 0 and len(workout_id) == 0:
+            return []
+            
+        try:
+            # create a cursor
+            cur = self.conn.cursor()
+
+            # get list of possible workout ids
+            cur.execute(f"SELECT template_id FROM workout_templates;")
+
+            # Get the id numbers and convert to string
+            available_workout_ids = cur.fetchall()
+            # extract the list of tuples
+            self.available_workout_ids = [x[0] for x in available_workout_ids]
+
+            # get the workout id value using the workout name
+            if len(workout_name) > 0 and len(workout_id) == 0:
+                self.workout_id = self.get_workout_id_from_name(workout_name)
+            else:
+                self.workout_id = workout_id
+
+            if self.workout_id not in self.available_workout_ids:
+                logging.warning(f"Workout '{workout_name}' with ID {workout_id} not found")
+                return -1
+
+            # if the workout is available, generate the desired table name. Table name format is 'workout002'
+            self.table_name = "workout" + str(self.workout_id).zfill(3)
+            # execute a statement
+            cur.execute(f"SELECT power FROM {self.table_name};")
+            # retrieve the response
+            power_profile = cur.fetchall()
+
+            # close the connection with the PostgreSQL
+            cur.close()
+
+            # extract from the list of tuples format
+            return [x[0] for x in power_profile]
+ 
+        except (Exception, psycopg2.DatabaseError) as Error:
+            print(Error)           
+```
+The get_power_profile method accepts workout_name and workout_id as optional inputs. The first block of code checks whether there were any actual inputs. It checks the length of the input parameters, and if both are length 0, then stop the method and return an empty list. Assuming the method had at least one non null input, then fetch data from the database. As with the previous 2 mthods, I created a cursor, and executed a SQL query. The query in this case selected all of the template_id rows from the workout_templates table. Then, uing the cur.fetchall command, I accepted the result of the query as a tuple. Next, using a list comprehension I extracted the workout_id values and stored them in a class property called available_workout_ids. At this point in the code, I had an input (either the workout name or id) and I had a list of available workout ids to search through. If the given input was the workout id, then this step is easy. But what if the workout name was provided? 
+Let's take a closer look. I recoppied the section of code below for reference. 
+```
+            # get the workout id value using the workout name
+            if len(workout_name) > 0 and len(workout_id) == 0:
+                self.workout_id = self.get_workout_id_from_name(workout_name)
+            else:
+                self.workout_id = workout_id
+```
+The 'if' statement confirms that a workout name was provided and that the workout id number was not. In this case, use the get_workout_if_from_name() method to get the id. If the first statement fails, that means we have the workout_id, so simply copy it to the class property. The next block of code (coppied below) checks that the workout_id assigned to the class property is valid, i.e., is within the list of available workout ids. If it is not valid, then log the problem and return error code -1. 
+```
+            if self.workout_id not in self.available_workout_ids:
+                logging.warning(
+                    f"Workout '{workout_name}' with ID {workout_id} not found"
+                )
+                return -1
+```
+
+Great, at this point in the method I had the workout id value. Now all that was left was to get the power profile from the appropriate workout table. Recall that the workout templates were names using the word 'workout' plus the template id value. So the next line of code generated the name of the desired table by combining the string 'workout' with the zero padded template id. 
+```
+            self.table_name = "workout" + str(self.workout_id).zfill(3)
+```
+Then, simply execute the SQL query to get the power column from the table, and use the fetchall() command to save it as a tuple. Then close the cursor for good measure and use a list comprehension to return the power values in the form of a list. 
+```
+            # execute a statement
+            cur.execute(f"SELECT power FROM {self.table_name};")
+            # retrieve the response
+            power_profile = cur.fetchall()
+
+            # close the connection with the PostgreSQL
+            cur.close()
+
+            # extract from the list of tuples format
+            return [x[0] for x in power_profile]
+```
+
+The final method I wanted to cover in this post is the 
