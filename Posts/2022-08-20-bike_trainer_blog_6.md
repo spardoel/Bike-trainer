@@ -44,4 +44,6 @@ The idea behind this class was that it would be able to interface with both the 
 As a starting point, the workout player takes the TrainerInterface, rider ftp, selected workout and the DatabaseHandler as inputs. 
 In the WorkoutPlayer's __init__ method, the database interface is used to retrieve the power profile of the desired workout. 
 
+### Wrap up 
+This short post just introduced the basic structure of the program. In the next posts I'll go into how the different classes were implemented and the chanllenges I encountered with the asyncio library... 
 
