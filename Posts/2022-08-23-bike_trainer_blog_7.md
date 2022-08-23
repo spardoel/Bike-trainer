@@ -173,4 +173,52 @@ Then, simply execute the SQL query to get the power column from the table, and u
             return [x[0] for x in power_profile]
 ```
 
-The final method I wanted to cover in this post is the 
+The final method I wanted to cover in this post is the method needed to add a new ride log.
+
+### add_new_ride_log()
+When a workout starts, the program needs to create a new entry in the ride_logs table and create a new ride table for that entry. The following method does just that. 
+```
+ def add_new_ride_log(self, rider_id, workout_name):
+        # get the workout tempalte id
+        workout_tempalte_id = self.get_workout_id_from_name(workout_name)
+
+        # create the cursor
+        cur = self.conn.cursor()
+        date_to_add = date.today()
+        print(date_to_add)
+        cur.execute(
+            f"INSERT INTO ride_logs (template_id,athlete_id,ride_date) VALUES({workout_tempalte_id},{rider_id},'{date.today()}');"
+        )
+        # commit the changes to the database
+        self.conn.commit()
+
+        # get the ride id from the newly created ride using the current data (assuming these two operations run on the same day)
+        cur.execute(
+            f"SELECT ride_id FROM ride_logs WHERE ride_date = '{date.today()}';"
+        )
+        # Get the id number and convert to string
+        ride_id = str(cur.fetchone()[0])
+
+        # generate the table name
+        new_table_name = "ride" + ride_id.zfill(3)
+
+        # execute a statement
+        cur.execute(
+            f"CREATE TABLE {new_table_name} (timestamp SERIAL PRIMARY KEY, power DECIMAL(3,2) not null);"
+        )
+
+        self.conn.commit()
+
+        # return the ride table name so that the table can be updated during the ride
+        return new_table_name
+```
+The method accepts the rider_id and workout_name and inputs, these are needed to add a new row to the ride_logs table. The first thing the method does is converts the workout_name to the workout_id. 
+Then it generates a cursor and executes a SQL command. This command inserts a new row into the ride_logs table. Note that to generate the date, I used date.today() from datetime. The result from date.today() was not accepted as a valid date in the SQL database, so I had to send it as a string, which worked. 
+After the command to add a row to the ride_logs table was sent, the conn.comit() command was used to commit the query to the database.
+Once the row was added to the ride_logs table, and the corresponding ride_id value was generated, I needed to get that ride_id. I did that using another SQL query to select the ride_id where the ride_data wasa equal to today's date. I suppose this could create a problem if the row was created just before midnight and the next query was executed a the next day... But I don't think that's likely. But to avoid the possibility altogether I'll update the code so that the date is saved as a variable that is used in booth queries - ensuring that the dates match.
+Then, once the ride_id was obtained, it was used to generate the name of the ride table in the form of 'ride001' where 001 is the ride_id.
+Then, another SQL execute() command is used to create the table with the newly generate name. 
+Finally, the changes are committed and the name of the table was returned. This name will be needed to update the table with the power data over the course of the workout.
+
+## Wrap up
+This post detailed the methods within the DatabaseHandler class. These methods were needed to fetch specific data from the database and to update and create tables. The methods will be used by the other classes in the program and may need to be updated or changed, but for now this class is done :) On to the next one.
