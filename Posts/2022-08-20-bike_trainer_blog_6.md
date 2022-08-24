@@ -4,7 +4,9 @@ At this point I had tested all the individual components. I could connect to the
 ### Design
 I started with a few class diagrams but I wasn't making much progress. I found it hard to visualize the whole finished system.
 Eventually I gave up and just started working on the components I knew for sure I would need. My initial implementation (in sudo UML) looked like this.
-![initial program class diagrams](https://user-images.githubusercontent.com/102377660/185766990-1d834a6f-fabd-4430-8a29-8db18ddef928.png)
+
+![initial program class diagrams](https://user-images.githubusercontent.com/102377660/186519519-c6144003-d2ee-4754-9cb2-281d9a83065c.png)
+
 As you can see I started with a main function that was associated with all the other classes. The User class just held the rider's ftp (for now). The TrainerInterface class was created in the main function then passed to the WorkoutPlayer for use. The DatabaseHandler class was used to interact with the database. 
 At this point, my main function looked like this
 ```
