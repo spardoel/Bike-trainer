@@ -1,4 +1,4 @@
-# Developing a cycling control program for my indoor trainer (TrainerRoad clone) Part 7 - Setting up bluetooth callbacks and the WorkoutPlayer class
+# Developing a cycling control program for my indoor trainer (TrainerRoad clone) Part 8 - Setting up bluetooth callbacks and the WorkoutPlayer class
 
 Oh boy. This part was tricky. The bluetooth commands used to communicate with the trainer need to be done asynchronously, which took me a few tries to get right. I'll try to describe the issues I had and my thought process along the way. 
 But to be honest, I mostly got it working through educated guesses and trial and error. Which as we all know, is the gold standard in coding. 
