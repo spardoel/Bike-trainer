@@ -25,7 +25,8 @@ And that's about as far as the previous post went. Picking up where it left off 
 Having tables to store the workout templates is great, but I also wanted to store the completed workouts. To make things a bit clearer let's define some terms. 
 I used '_Workout_' to refer to **templates** and available activities and I used '_Ride_' to refer to **completed activities**. With this in mind, I created additional tables that mirror the templates table but hold the power that the rider actually produced. Check out the diagram below.
 
-![ride_logs table](https://user-images.githubusercontent.com/102377660/186247330-a904b5d9-1c47-451c-a5af-307ce4eeeec3.png)
+![ride_logs table](https://user-images.githubusercontent.com/102377660/186526535-cc75a073-1365-4331-8bcb-d8e5dec1db6f.png)
+
 Just like for the workouts, there is one table holding the information for each ride and other tables holding the rides themselves. In this case, the ride_logs table holds the ride id, the template id, the athlete id and the data of completion. Then, separate ride tables hold the power that the rider produced at each timestamp during the ride. 
 
 ## The DatabaseHandler class
