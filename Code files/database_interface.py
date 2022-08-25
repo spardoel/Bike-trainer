@@ -1,6 +1,7 @@
 import logging
 import psycopg2
-from SQL_config.config import Config1
+from SQL_config.config import Config
+from datetime import date
 
 
 class DatabaseHandler:
@@ -9,7 +10,7 @@ class DatabaseHandler:
         self.conn = None
         try:
             # read connection parameters
-            params = Config1()
+            params = Config()
             # create the connection
             self.conn = psycopg2.connect(**params)
 
@@ -90,3 +91,34 @@ class DatabaseHandler:
 
         # Get the id number and convert to string
         return cur.fetchone()[0]
+
+    def add_new_ride_log(self, rider_id, workout_name):
+        # get the workout tempalte id
+        workout_tempalte_id = self.get_workout_id_from_name(workout_name)
+
+        # create the cursor
+        cur = self.conn.cursor()
+        todays_date = date.today()
+        cur.execute(
+            f"INSERT INTO ride_logs (template_id,athlete_id,ride_date) VALUES({workout_tempalte_id},{rider_id},'{todays_date}');"
+        )
+        # commit the changes to the database
+        self.conn.commit()
+
+        # get the ride id from the newly created ride using the current data (assuming these two operations run on the same day)
+        cur.execute(f"SELECT ride_id FROM ride_logs WHERE ride_date = '{todays_date}';")
+        # Get the id number and convert to string
+        ride_id = str(cur.fetchone()[0])
+
+        # generate the table name
+        new_table_name = "ride" + ride_id.zfill(3)
+
+        # execute a statement
+        cur.execute(
+            f"CREATE TABLE {new_table_name} (timestamp SERIAL PRIMARY KEY, power DECIMAL(3,2) not null);"
+        )
+
+        self.conn.commit()
+
+        # return the ride table name so that the table can be updated during the ride
+        return new_table_name

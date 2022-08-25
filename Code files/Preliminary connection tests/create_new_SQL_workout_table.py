@@ -27,7 +27,6 @@ def connect():
         print(db_version)
 
         # execute a statement
-        # print("PostgreSQL database version:")
         cur.execute("SELECT * from athletes;")
 
         result = cur.fetchone()
@@ -120,4 +119,6 @@ def add_new_workout(name, duration, difficulty, power_profile):
 power_profile = [0.8] * (30 * 60)
 name = "workout001"
 
-add_new_workout("Fast and steady", 30, "Medium", power_profile)
+# add_new_workout("Fast and steady", 30, "Medium", power_profile)
+
+connect()
