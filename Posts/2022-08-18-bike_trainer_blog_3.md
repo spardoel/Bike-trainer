@@ -146,5 +146,5 @@ The Suito was made by:Elite
 
 ### Wrap up
 Good. I was able to connect to the device and show the available characteristics. Then I read a specific value to test the connection.
-Importantly, I also tool note of the integer handles used to access each characteristic namely:
+Importantly, I also took note of the integer handles used to access each characteristic namely:
 (Handle: 36): Indoor Bike Data, (Handle: 46): Fitness Machine Status, and (Handle: 49): Fitness Machine Control Point.

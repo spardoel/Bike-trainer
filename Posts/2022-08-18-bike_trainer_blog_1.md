@@ -9,7 +9,7 @@ To start, I wanted to see if I could connect to my bike trainer. I use the Suito
 In the past I have used MATLAB to control bluetooth devices, so I started there. 
 
 I started with the basics. Search for available devices, connect to the device by name, then display the services and characteristics. 
-These are the commands that will be used in this post.
+These are the commands that will be used in this post. Like I said, I have done this part before so it was pretty smooth sailing. 
 ```
 devlist = blelist % list the available bluetooth low energy devices.
 suito_device = ble("SUITO") % connect to the device names "SUITO"
