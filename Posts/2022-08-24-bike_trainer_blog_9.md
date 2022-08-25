@@ -159,4 +159,18 @@ bytearray(b'T\x08\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00')
 As I suspected, requesting control of the resistance started the 'elepased_time' counter on the trainer. Don't you just love it when problems solve themselves?
 
 ### Update trainer resistance
+Similar to the request_trainer_control() method, the set_trainer_resistance() method also used the control point characteristic on the trainer. Howerver, this method accepts the new desired power value as an input parameter and converts the value to a byte array before sending. Like this. 
+```
+    async def set_trainer_resistance(self,new_power):
 
+        new_target_power_bytes = new_power.to_bytes(2, "little")
+        await self.client.write_gatt_char(
+            FIT_MACHINE_CONTROL_POINT_HANDLE,
+            bytearray([5, new_target_power_bytes[0], new_target_power_bytes[1]]),
+            response=True,
+        )
+```
+
+
+### A few housekeeping changes 
+Just in case something goes wrong down the line, I added some log file entries to request_trainer_control() and set_trainer_resistance() methods. The control point responses are always logged, abd now the request to change the resistance will be logged as well. This might be helpful down the line if things go wrong... (I hope it won't be necessary)
