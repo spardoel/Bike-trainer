@@ -172,9 +172,128 @@ Now, converting the new power to bytes then using indexes to access the first an
 Just in case something goes wrong down the line, I added some log file entries to request_trainer_control() and set_trainer_resistance() methods. The automatic responses from the control point characteristic are already always logged through the control_callback() method. Now, the request to change the resistance will be logged as well. This might be helpful down the line if things go wrong... (I hope it won't be necessary)
 
 ## Checking the power profile and adjusting the trainer difficulty
-During the creation of the WorkoutPlayer class object, the init method calls the DatabaseHandler.get_power_profile() method. This means that the workout template power profile is already available as a property within the start_workout() method. At 1 second intervals the 
+During the creation of the WorkoutPlayer class object, the init method calls the DatabaseHandler.get_power_profile() method. This means that the workout template power profile is already available as a property within the start_workout() method. The main loop in the start_workout() method is responsible for logging the current user power to the batabase, checking the target power for the next second and sending the command to update the trainer resistance. 
+At first I wanted to use the elapsed time received from the trainer as the index to get the next target power from the power_profile. But what if some delay were introduced? Or what if the workout is paused and when it resumes the elapsed time no longer coincided with the correct power value? After some thought, I decided I would have a specific counter to keep track of the progression through the power profile, and the elapsed time value will be used only to check if new data is available. 
+### Defining the counter index and setting the new power
+To start, I defined the counter as workout_index = [] before the main loop started. Then, I created the following if statement to see if the power needed to be updated, and if so, send the command to change the trainer resitance, and update the current_power property.
+```
+ # Check if new target power needs to be set
+                if self.power_profile[self.workout_index] != self.current_target_power:
+                    await self.trainer.set_trainer_resistance(self.power_profile[self.workout_index])
+                    # update the current power
+                    self.current_target_power = self.power_profile[self.workout_index] 
+```
+Then, before I could get distracted, I implemented the incrmentation of the index and the exit condition that will stop the loop at the completion of the power_profile.
+```
+            # increment the counter
+            self.workout_index =  self.workout_index + 1
 
+            # end the loop if the workout is finished
+            if self.workout_index >= len(self.power_profile):
+                print("The workout has finished normally")
+                break
+```
+### Updating the database with the new power
+As the main loop runs I wanted toupdate the database with the user power and cadence. For this I created the log_ride_power() method.
+The method takes the previously generated table name, the power value and the cadence value to be added as inputs. Here is the method.
+```
+def log_ride_power(self, table_name, power_to_log,cadence_to_log):
+        # get the workout tempalte id
+        
+        # create the cursor
+        cur = self.conn.cursor()
+        
+        cur.execute(
+            f"INSERT INTO {table_name} (power, cadence) VALUES({power_to_log},{cadence_to_log});"
+        )
+        # commit the changes to the database
+        self.conn.commit()
+```
 
+## Completed start_workout() method     
+Here is the complete code for the method. 
+```
+async def start_workout(self):
+        logging.info("Starting workout")
+        print("here we go... ")
 
+        self.ride_log_table_name = self.database.add_new_ride_log(
+            self.rider_id, self.workout_name
+        )
 
+        # Subscribe to the BLE characteristics to start getting data from the trainer
+        await self.trainer.sub_to_trainer_characteristics()
+        # await asyncio.create_task(self.trainer.sub_to_trainer_characteristics())
+
+        # request trainer resistance control
+        await self.trainer.request_trainer_control()
+        await asyncio.sleep(0.5)
+
+        # set the initial timestamp / index and timeout timer
+        self.time_of_last_update = 0
+        self.timeout_timer = []
+        self.workout_index = 0
+        self.current_target_power = []
+
+        # Start the main loop that runs during the ride
+        while True:
+            await asyncio.sleep(0.1)
+            # check if new data has arrived
+            if self.trainer.elapsed_time_sec > self.time_of_last_update:
+                # if the trainer has a larger number, then new data has been received.
+                # update the time_stamp and reset the timeout timer
+                self.time_of_last_update = self.trainer.elapsed_time_sec
+                self.timeout_timer = []
+
+                # new data is available.
+                # Check if new target power needs to be set
+                if self.power_profile[self.workout_index] != self.current_target_power:
+                    await self.trainer.set_trainer_resistance(
+                        int(self.power_profile[self.workout_index] * self.ftp)
+                    )
+                    # update the current power
+                    self.current_target_power = int(
+                        self.power_profile[self.workout_index] * self.ftp
+                    )
+
+                print(
+                    f"Elapsed time: {self.trainer.elapsed_time_sec}, target power: {self.current_target_power }, rider power: {self.trainer.inst_power_watts}"
+                )
+
+                # Log the user power to the database
+                self.database.log_ride_power(
+                    self.ride_log_table_name,
+                    self.trainer.inst_power_watts,
+                    self.trainer.inst_cadence_rpm,
+                )
+
+                await asyncio.sleep(0.1)
+
+                # increment the counter
+                self.workout_index = self.workout_index + 1
+
+                # end the loop if the workout is finished
+                if self.workout_index >= len(self.power_profile):
+                    print("The workout has finished normally")
+                    break
+
+            elif not self.timeout_timer:
+                # if the timer is not running, start it
+                self.timeout_timer = time.time()
+
+            elif (time.time() - self.timeout_timer) > NO_NEW_DATA_TIMEOUT:
+                # if the timer has been running longer than the timeout duration, break the loop
+                logging.debug(
+                    f"The no new data timeout of {NO_NEW_DATA_TIMEOUT} seconds was reached."
+                )
+                print("Timeout reached")
+                break
+
+            # end the loop with the possible exit conditions
+            if keyboard.is_pressed("Esc"):
+                break
+```
+
+## Wrap up
+With all the components in place, I was ready to test WorkoutPlayer.start_workout(). I will let you know how it went in the next post.
 
