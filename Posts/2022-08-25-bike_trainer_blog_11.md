@@ -5,18 +5,19 @@ With the basic functionality testing done, I next added a way for a user to inte
 At this point the code worked. I could run a workout and log the results. Next I wanted to create a basic UI that would allow the user to view the available workouts and select one from the list. I also wanted to create a workout summary display to show duration and average power at the completion of a workout. I started with the workout summary to get it out of the way.
 
 ### Display workout summary
-Basically I wanted to display a message to the user to show the duration of the workout, as well as the average power and cadence. These values are all available from the ride log table, so this method will invole writing a method to get all data from the database. 
-On second thought, I wrote three separate methods one to get the timestamps, one to get the power and the other to get the cadence. Here is they are.
+Basically I wanted to display a message to the user to show the duration of the workout, as well as the average power and cadence. These values are all available from the ride log table, so this method involed writing methods to get all the data from the ride log table. 
+I wrote three separate methods one to get the timestamps, one to get the power and the other to get the cadence. Here they are.
 ```
  def get_ride_duration_from_ride_log_table(self, table_name):
 
         cur = self.conn.cursor()
 
-        # get list of possible workout ids
+        # Query the databse
         cur.execute(f"SELECT timestamp FROM {table_name};")
 
-        # Get the id numbers and convert to string
+        # Get the result
         results = cur.fetchall()
+        
         # extract the list of tuples
         results_list = [x[0] for x in results]
 
@@ -27,31 +28,34 @@ On second thought, I wrote three separate methods one to get the timestamps, one
 
         cur = self.conn.cursor()
 
-        # get list of possible workout ids
+        # Query the databse
         cur.execute(f"SELECT power FROM {table_name};")
 
-        # Get the id numbers and convert to string
+        # Get the result
         results = cur.fetchall()
+        
         # extract the list of tuples
         results_list = [x[0] for x in results]
 
+        # return the average
         return mean(results_list)
 
     def get_avg_cadence_from_ride_log_table(self, table_name):
 
         cur = self.conn.cursor()
 
-        # get list of possible workout ids
+        # Query the databse
         cur.execute(f"SELECT cadence FROM {table_name};")
 
-        # Get the id numbers and convert to string
+        # Get the result
         results = cur.fetchall()
+        
         # extract the list of tuples
         results_list = [x[0] for x in results]
 
         return mean(results_list)
 ```
-The methods are pretty basic, they query the watabase then unpack the results and return a numeric value. These methods are called within a print statement placed after the main loop in the start_workout() method.
+The methods are pretty basic, they query the database then unpack the results and return a numeric value. These methods are called within a print statement placed after the main loop in the start_workout() method. This is the call to these methods:
 ```
 # after the main loop ends, display ride values to the user
         print(
@@ -60,14 +64,14 @@ The methods are pretty basic, they query the watabase then unpack the results an
 ```
 ## the UserInterface class
 
-The UI interactions will need to run at the beginning of the main function. But to avoid cluttering the main I wanted to group the user interface methods together. For this purpose I created the UserInterface class.
+The UI interactions will need to run at the beginning of the main function. But to avoid cluttering the main I wanted to group the user interface methods together. For this purpose, I created the UserInterface class.
 The class had the following methods
 display_welcome_message()
 display_end_message()
 display_available_workouts()
 
 ### Welcome screen and workout selection
-The welcome method pretty much does what the title implies. It displays a welcome message to the user and invited them to choose one of the available options.
+The welcome method pretty much does what the title implies. It displays a welcome message to the user and invites them to choose one of the available options.
 ```
  def display_welcome_message(self):
 
@@ -84,31 +88,33 @@ The welcome method pretty much does what the title implies. It displays a welcom
 
         elif user_input == "2":
             self.display_end_message()
-            return
+            
         else:
             print("Invalid input. Try again.\n")
             time.sleep(2)
             self.display_welcome_message()
 ```
-This method dispalys a welcome message and promtps the user to pres either 1 or 2. The coe then checks the input and runs the appropriate methods, in this case either the display_available_workouts() method or the display_welcome_message() method.
+This method dispalys a welcome message and promtps the user to press either 1 or 2. The method then checks the input and runs the appropriate methods, in this case, either the display_available_workouts() method or the display_welcome_message() method.
+I also wrote the display_end_message() method.
 ```
     def display_end_message(self):
         print("Program terminated. See you next time!")
         exit()
 ```
 The display_end_message() method simply displays a message to the user and terminates the program.
+Next, there was the display_available_workouts() method.
 ```
     def display_available_workouts(self):
 
         # get the available workouts from the database
         valid_ids = self.database.print_available_workouts()
 
-        print("Enter the database id numer to select it.\n To exit, press 'E'")
+        print("Enter the workout id number to select it.\n To exit, press 'E'")
 
         user_input = input()
 
         if user_input in valid_ids:
-            self.selected_workout = user_input
+            self.selected_workout = int(user_input)
 
         elif user_input == "e" or user_input == "E":
             self.display_end_message()
@@ -120,12 +126,12 @@ The display_end_message() method simply displays a message to the user and termi
 The display_available_workouts() method is a little more interesting. First it calls a DatabaseHandler method that prints the available workouts for the user and returns the list of available workout ids. Then the method accepts the user input and either selects the corresponding workout, asks the user to try again if the input is invalid, or exits the program. Next lets look at the DatabaseHandler.print_available_workouts() method. 
 
 ### The DatabaseHandler print_available_workouts() method
-This method accesses the database and returns all the data from the workout_templates table. It prints the data to the user and then executes a second query to retrive the workout template ids which are then returned to the UserInterface intance. 
+This method accesses the database and returns all the data from the workout_templates table. It prints the data to the user and then executes a second query to retrive the workout template ids which are then returned as a list to the UserInterface intance. 
 ```
 def print_available_workouts(self):
         # create a cursor
         cur = self.conn.cursor()
-        # get the data from
+        # Quesry the database
         cur.execute(f"SELECT * FROM workout_templates ORDER BY template_id;")
         # retrieve the response
         available_workouts = cur.fetchall()
@@ -133,6 +139,7 @@ def print_available_workouts(self):
         # print the header
         print("Workout Id,  Workout name,   Duration (min),    Difficulty")
 
+        # print the workout information
         for row in available_workouts:
             print(f"{row[0]}           {row[1]}       {row[2]}             {row[3]} ")
 
@@ -143,8 +150,8 @@ def print_available_workouts(self):
         # return a list of valid ids
         return [str(x[0]) for x in valid_ids]
 ```
-
-And really that's about it. 
+With those basic user interface methods done, that's about it. 
+I crossed my fingers and ran the code.
 Here is an example of the program being run. 
 ```
 Welcome to my TrainerRoad clone! 
@@ -157,7 +164,7 @@ Workout Id,  Workout name,   Duration (min),    Difficulty
 1           Slow and steady       15             Easy
 10           Fast and steady       30             Medium
 12           test workout       1             Easy
-Enter the database id numer to select it.
+Enter the workout id number to select it.
  To exit, press 'E'
 12
 Trainer connected.
@@ -231,5 +238,6 @@ Workout done! The ride was 1.0  minutes long with and average power of 91 Watts 
 It works! 
 
 ## Wrap up
-The bulk of the coding is finished! There is a _very_ simple user interface that allows the user to select a workout and monitor their power during the ride. 
-There are a few minor tweaks to be made but for the most part it's done! Yay!
+There is now a _very_ simple user interface that allows the user to select a workout and monitor their power during the ride. 
+With that, the bulk of the coding is finished! 
+There are a few minor tweaks to be made (the UI could absolutely benefit from some extra work) but for the most part, it's done! Yay!
