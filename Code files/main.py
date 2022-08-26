@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+
 import logging
 import asyncio
 from user import User
 from workout_player import WorkoutPlayer
 from database_interface import DatabaseHandler
 from trainer_interface import TrainerInterface
+from user_interface import UserInterface
 
 # configure logger
 logging.basicConfig(filename="log.txt", level=logging.DEBUG)
@@ -12,12 +15,18 @@ logging.basicConfig(filename="log.txt", level=logging.DEBUG)
 CURENT_USER_ID = 1  # this will be replaced with a login in the future
 database = DatabaseHandler()
 
+
+# lauch the user interface
+user_interface = UserInterface(database)
+selected_workout = user_interface.display_welcome_message()
+
 # Create a user profile
 current_user = User(database.get_athlete_power(CURENT_USER_ID))
 
 # create the trainer interface
 SUITO_ADDRESS = "F3:DB:2B:F4:47:0C"
 trainer = TrainerInterface(SUITO_ADDRESS)
+
 
 asyncio.run(trainer.trainer_connect())
 
@@ -29,8 +38,6 @@ if not trainer.check_connection():
     logging.error("Cannot connect to trainer. Program terminated")
     exit()
 
-# select a workout (this will later be an input from the user)
-selected_workout = "Fast and steady"
 
 # create the workout player isntance
 ride = WorkoutPlayer(
