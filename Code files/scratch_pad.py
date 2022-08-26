@@ -3,6 +3,9 @@ from struct import unpack
 
 from datetime import date
 
+
+print(time.time)
+
 today = date.today()
 print(today)
 

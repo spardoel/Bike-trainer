@@ -116,9 +116,9 @@ def add_new_workout(name, duration, difficulty, power_profile):
             print("Database connection closed")
 
 
-power_profile = [0.8] * (30 * 60)
+power_profile = [0.4] * (1 * 60)
 name = "workout001"
 
-# add_new_workout("Fast and steady", 30, "Medium", power_profile)
+add_new_workout("test workout", 1, "Easy", power_profile)
 
 connect()

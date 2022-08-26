@@ -81,6 +81,8 @@ class TrainerInterface:
         await self.client.write_gatt_char(
             FIT_MACHINE_CONTROL_POINT_HANDLE, bytes([00]), response=True
         )
+        logging.debug("Trainer control requested.")
+        print("Trainer control requested")
 
     async def set_trainer_resistance(self, new_power):
 
@@ -94,7 +96,7 @@ class TrainerInterface:
 
 def control_callback(sender: int, data: bytearray):
     # Unpack the message and log it if there is a problem (result code 1 is normal)
-    print(data)
+    # print(data)
     result_code = unpack("<b", data[2:3])[0]
     if result_code != 1:
         logging.debug("Control point response received. {result_code}")
@@ -102,7 +104,7 @@ def control_callback(sender: int, data: bytearray):
 
 def status_callback(sender: int, data: bytearray):
     # get the current resistance level of the trainer
-    trainer_resistance_watts = unpack("<h", data[1:])[0]
+    logging.debug(f"Status_callback: The trainer resistance is {data}")
 
 
 def bike_data_callback(
@@ -110,12 +112,13 @@ def bike_data_callback(
 ):
     # Unpack the data from the trainer to get the instantaneous cadence, instantaneous power and the total time
     # incomming data format is 2 bytes for flags, 2 for inst speed, 2 inst cadence, 3 total distance, 2 inst power, 2 elepsed time
-    print(data)
+    # print(data)
     # Get the cadence in rpm
-    inst_cadence_rpm = unpack("<H", data[4:6])[0] / 2
+    trainer_interface_instance.inst_cadence_rpm = int(unpack("<H", data[4:6])[0] / 2)
     # get the power in watts
-    inst_power_watts = unpack("<h", data[9:11])[0]
+    trainer_interface_instance.inst_power_watts = unpack("<h", data[9:11])[0]
     # get the elapsed time in seconds
     elapsed_time_sec = unpack("<H", data[11:14])[0]
-    print(f"Elapsed time is: {elapsed_time_sec}")
+
+    # print(f"Elapsed time is: {elapsed_time_sec}")
     trainer_interface_instance.elapsed_time_sec = elapsed_time_sec

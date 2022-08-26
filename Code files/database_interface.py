@@ -2,6 +2,7 @@ import logging
 import psycopg2
 from SQL_config.config import Config
 from datetime import date
+from statistics import mean
 
 
 class DatabaseHandler:
@@ -18,6 +19,7 @@ class DatabaseHandler:
 
         except (Exception, psycopg2.DatabaseError) as Error:
             print(Error)
+            exit()
 
     def __del__(self):
         # desctructor
@@ -82,6 +84,17 @@ class DatabaseHandler:
         # Get the id number and convert to string
         return cur.fetchone()[0]
 
+    def get_workout_name_from_id(self, workout_id):
+        # create a cursor
+        cur = self.conn.cursor()
+
+        cur.execute(
+            f"SELECT name from workout_templates WHERE template_id = '{workout_id}';"
+        )
+
+        # Get the id number and convert to string
+        return cur.fetchone()[0]
+
     def get_athlete_power(self, athlete_id):
 
         # create a cursor
@@ -106,7 +119,10 @@ class DatabaseHandler:
         self.conn.commit()
 
         # get the ride id from the newly created ride using the current data (assuming these two operations run on the same day)
-        cur.execute(f"SELECT ride_id FROM ride_logs WHERE ride_date = '{todays_date}';")
+        cur.execute(
+            f"SELECT ride_id FROM ride_logs WHERE ride_date = '{todays_date}' ORDER BY ride_id DESC;"
+        )
+
         # Get the id number and convert to string
         ride_id = str(cur.fetchone()[0])
 
@@ -115,10 +131,85 @@ class DatabaseHandler:
 
         # execute a statement
         cur.execute(
-            f"CREATE TABLE {new_table_name} (timestamp SERIAL PRIMARY KEY, power DECIMAL(3,2) not null);"
+            f"CREATE TABLE {new_table_name} (timestamp SERIAL PRIMARY KEY, power int not null, cadence int not null);"
         )
 
         self.conn.commit()
 
         # return the ride table name so that the table can be updated during the ride
         return new_table_name
+
+    def log_ride_power(self, table_name, power_to_log, cadence_to_log):
+
+        # create the cursor
+        cur = self.conn.cursor()
+        # Query the database
+        cur.execute(
+            f"INSERT INTO {table_name} (power, cadence) VALUES({power_to_log},{cadence_to_log});"
+        )
+        # commit the changes to the database
+        self.conn.commit()
+
+    def get_ride_duration_from_ride_log_table(self, table_name):
+
+        cur = self.conn.cursor()
+
+        # Query the database
+        cur.execute(f"SELECT timestamp FROM {table_name};")
+
+        results = cur.fetchall()
+        # extract the list of tuples
+        results_list = [x[0] for x in results]
+
+        # return the length of the ride in minutes.
+        return len(results_list) / 60
+
+    def get_avg_power_from_ride_log_table(self, table_name):
+
+        cur = self.conn.cursor()
+
+        # Query the database
+        cur.execute(f"SELECT power FROM {table_name};")
+
+        results = cur.fetchall()
+        # extract the list of tuples
+        results_list = [x[0] for x in results]
+
+        # return the average
+        return mean(results_list)
+
+    def get_avg_cadence_from_ride_log_table(self, table_name):
+
+        cur = self.conn.cursor()
+
+        # Query the database
+        cur.execute(f"SELECT cadence FROM {table_name};")
+
+        results = cur.fetchall()
+        # extract the list of tuples
+        results_list = [x[0] for x in results]
+
+        # return the average
+        return mean(results_list)
+
+    def print_available_workouts(self):
+        # create a cursor
+        cur = self.conn.cursor()
+        # Query the database
+        cur.execute(f"SELECT * FROM workout_templates ORDER BY template_id;")
+        # retrieve the response
+        available_workouts = cur.fetchall()
+
+        # print the header
+        print("Workout Id,  Workout name,   Duration (min),    Difficulty")
+
+        # Print the workout information
+        for row in available_workouts:
+            print(f"{row[0]}           {row[1]}       {row[2]}             {row[3]} ")
+
+        # Query the database
+        cur.execute(f"SELECT template_id FROM workout_templates ORDER BY template_id;")
+        # retrieve the response
+        valid_ids = cur.fetchall()
+        # return a list of valid ids
+        return [str(x[0]) for x in valid_ids]
